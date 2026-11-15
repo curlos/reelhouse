@@ -26,25 +26,25 @@ ReelHouse is a responsive movie and TV discovery app with a vast collection of m
 
 <div align="center">
 
-### 🏠 Homepage (Desktop & Mobile)
+### 🏠 Homepage
 <div>
-  <img src="https://github.com/user-attachments/assets/ec36361f-8614-4ba1-8f79-91e78530b9c7" height="250" /> <img src="https://github.com/user-attachments/assets/8db1486f-7ca6-4c02-8bad-1f30237e432c" height="250" />
+  <img src="https://github.com/user-attachments/assets/489804d7-0a75-4fb6-a6ec-2c0449655dd5" width="100%" />
 </div>
 <div>
-  <img src="https://github.com/user-attachments/assets/bb578df8-fa85-4929-ac1b-c1da45882169" height="250" /> <img src="https://github.com/user-attachments/assets/21748cac-9c3f-45c8-af1b-1dc29b920e24" height="250" />
+  <img src="https://github.com/user-attachments/assets/9cc523fe-e7fb-45a4-8652-305074d3915d" width="100%" />
 </div>
 
-### 🎬 Movies (Desktop & Mobile)
-<img src="https://github.com/user-attachments/assets/2dd87bfc-b68d-460d-8b48-6e671c4b1958" height="250" /> <img src="https://github.com/user-attachments/assets/48323362-1896-4ba4-a9a0-36366135b7cc" height="250" />
+### 🎬 Movies
+<img src="https://github.com/user-attachments/assets/b72f5b81-9b84-4ccc-ae79-9d7b24f02b3e" width="100%" />
 
-### 📺 TV Shows (Desktop & Mobile)
-<img src="https://github.com/user-attachments/assets/019f5720-d269-4c09-b7ba-c6338552ab00" height="250" /> <img src="https://github.com/user-attachments/assets/bba28725-fd98-4843-ac2b-723cf3d46c31" height="250" />
+### 📺 TV Shows
+<img src="https://github.com/user-attachments/assets/a44bcb1e-21fa-44fe-a27b-4b55b524d2b9" width="100%" />
 
-### 🎭 TV Show Details (Desktop & Mobile)
-<img src="https://github.com/user-attachments/assets/32a80f2b-2d17-4df9-914b-aa99373ab1a0" height="250" /> <img src="https://github.com/user-attachments/assets/270ea0c7-5407-403f-aa8a-1632bb2f2e92" height="250" />
+### 🎭 TV Show Details
+<img src="https://github.com/user-attachments/assets/fdf379ce-8b62-4524-8f4a-d357167a49eb" width="100%" />
 
-### 📹 TV Episode (Desktop & Mobile)
-<img src="https://github.com/user-attachments/assets/8006a142-ef28-45ee-bfc0-0ed1659dec7a" height="250" /> <img src="https://github.com/user-attachments/assets/1696294a-8b14-4094-97c9-8674fed47a14" height="250" />
+### 📹 TV Episode
+<img src="https://github.com/user-attachments/assets/943c69c3-4410-4681-9822-d32176e9be75" width="100%" />
 
 </div>
 
