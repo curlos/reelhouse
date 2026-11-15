@@ -30,8 +30,8 @@ const TopNavbar = () => {
   const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debouncedNavigate = useCallback(
-    // eslint-disable-next-line react-hooks/exhaustive-deps
     debounce((query) => {
       if (query) {
         navigate(`/?query=${encodeURIComponent(query)}`);

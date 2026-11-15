@@ -1,4 +1,4 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useRef, useEffect } from 'react';
 import { Link } from "react-router-dom";
 import HoveredMovie from './HoveredMovie';
 
@@ -7,8 +7,6 @@ import HoveredMovie from './HoveredMovie';
  * @returns {React.FC}
  */
 const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
-  const [_show, setShow] = useState(false);
-
   const timeoutIdRef = useRef(null);
 
   // Cleanup timeout on unmount to prevent memory leaks
@@ -23,10 +21,6 @@ const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
 
   const showHoveredMovie = (newHoveredMovie) => {
     setHoveredValue(newHoveredMovie);
-  };
-
-  const handleShow = () => {
-    setShow(true);
   };
 
   const handleHover = () => {
@@ -64,11 +58,11 @@ const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
       {hoveredValue && hoveredValue === movie && movie?.media_type !== 'person' ? (
 
         <div className="text-white">
-          <HoveredMovie handleShow={handleShow} setHoveredValue={setHoveredValue} movie={movie} />
+          <HoveredMovie setHoveredValue={setHoveredValue} movie={movie} />
         </div>
 
       ) : (
-        <div className="smallMovie text-white fs-6" onClick={handleShow} onMouseEnter={handleHover} onMouseLeave={handleHoverLeave}>
+        <div className="smallMovie text-white fs-6" onMouseEnter={handleHover} onMouseLeave={handleHoverLeave}>
           <div className="d-flex flex-column justify-content-between h-100">
             <div >
               {imagePath ? (

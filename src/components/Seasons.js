@@ -141,6 +141,7 @@ const Season = ({ tvShowID, seasonNumber, seasonData, isLoading, error, seasonDr
         scrollToSeasonTitle()
       }, 100)
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentPage, seasonDropdownRef, searchParams]);
 
   if (isLoading) {
