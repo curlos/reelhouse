@@ -34,7 +34,7 @@ const TopNavbar = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
     debounce((query) => {
       if (query) {
-        navigate(`/?query=${query}`);
+        navigate(`/?query=${encodeURIComponent(query)}`);
       }
     }, 1000),
     [navigate]
@@ -88,7 +88,7 @@ const TopNavbar = () => {
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      dispatch(logout);
+      dispatch(logout());
       window.location.reload();
     } catch (err) {
       console.error(err);
@@ -97,6 +97,7 @@ const TopNavbar = () => {
 
   return (
     <Navbar variant="dark" className="bg-black fixed-top topNavbar">
+      <a href="#main-content" className="skip-link">Skip to content</a>
       <Nav className="w-100 text-white navLink d-flex justify-content-between align-items-center container mx-auto px-3 px-sm-0">
         <Link to="/" className="navLink h-100 ps-0 d-flex align-items-center me-2 d-md-none">
           <img src="/assets/reelhouse_logo.svg" alt="ReelHouse" className="navImage" />
@@ -115,8 +116,10 @@ const TopNavbar = () => {
 
         <div className="d-flex align-items-center gap-3">
           <div className={`px-2 py-1 ${showInput ? 'border' : ''}`} ref={searchContainerRef}>
-            <i className="bi bi-search mediumIcon cursor-pointer" onClick={handleSearchIconClick}></i>
-            <input ref={searchInputRef} autoFocus={searchParams.get('query') && searchParams.get('query').length > 0} className={`bg-black border-0 text-white searchInput ${showInput ? 'fullInput p-1 px-2' : ''}`} placeholder="Titles, people, genres" value={searchQuery} onChange={(e) => {
+            <button type="button" className="bg-transparent border-0 p-0 text-white" aria-label="Search" aria-expanded={showInput} onClick={handleSearchIconClick}>
+              <i className="bi bi-search mediumIcon" aria-hidden="true"></i>
+            </button>
+            <input ref={searchInputRef} type="search" aria-label="Search titles, people, genres" tabIndex={showInput ? 0 : -1} onKeyDown={(e) => e.key === 'Escape' && setShowInput(false)} autoFocus={searchParams.get('query') && searchParams.get('query').length > 0} className={`bg-black border-0 text-white searchInput ${showInput ? 'fullInput p-1 px-2' : ''}`} placeholder="Titles, people, genres" value={searchQuery} onChange={(e) => {
               isUserSearching.current = true;
               setSearchQuery(e.target.value);
             }} />
@@ -124,7 +127,7 @@ const TopNavbar = () => {
 
           {user && user.email ? (
             <Dropdown className="d-none d-sm-block">
-              <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0" id="dropdown-basic" className="p-0 ">
+              <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0" id="account-dropdown" aria-label="Account menu" className="p-0 ">
                 <img src="/assets/reelhouse_avatar.svg" alt="Profile" className="navImage" />
               </Dropdown.Toggle>
 
@@ -142,9 +145,9 @@ const TopNavbar = () => {
             </span>
           )}
 
-          <div className="d-sm-none" onClick={() => setOpen(true)}>
-            <i className="bi bi-list fs-3"></i>
-          </div>
+          <button type="button" className="d-sm-none bg-transparent border-0 p-0 text-white" aria-label="Open menu" aria-expanded={open} onClick={() => setOpen(true)}>
+            <i className="bi bi-list fs-3" aria-hidden="true"></i>
+          </button>
         </div>
 
       </Nav>

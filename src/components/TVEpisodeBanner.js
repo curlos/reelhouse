@@ -102,7 +102,7 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
         <div className="tvEpisodeBannerInfo container mx-auto">
           <div className="d-flex flex-column flex-sm-row justify-content-between align-items-sm-center">
             <Link to={`/title/tv/${tvShow.id}`}>
-              <i className="bi bi-chevron-left"></i>
+              <i className="bi bi-chevron-left" aria-hidden="true"></i>
               <span className="ms-2">{tvShow.name || tvShow.original_name}</span>
             </Link>
             
@@ -110,10 +110,11 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
               {hasPrevEpisode && (
                 <button 
                   onClick={handlePrevEpisode}
+                  aria-label="Previous episode"
                   className="btn btn-link text-white p-0 border-0 d-flex align-items-center"
                   style={{ textDecoration: 'none', fontSize: '1.5rem' }}
                 >
-                  <i className="bi bi-chevron-left"></i>
+                  <i className="bi bi-chevron-left" aria-hidden="true"></i>
                 </button>
               )}
               
@@ -121,7 +122,7 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
                 {/* Season Dropdown */}
                 <Dropdown>
                 <Dropdown.Toggle
-                  id="dropdown-no-bg"
+                  id="season-select-dropdown"
                   size="sm"
                   className="border-0 bg-transparent text-white episode-dropdown-toggle"
                   style={{ fontSize: '1rem' }}
@@ -162,7 +163,7 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
               {/* Episodes Dropdown */}
               <Dropdown>
                 <Dropdown.Toggle
-                  id="dropdown-no-bg"
+                  id="episode-select-dropdown"
                   size="sm"
                   className="border-0 bg-transparent text-white episode-dropdown-toggle"
                   style={{ fontSize: '1rem' }}
@@ -223,10 +224,11 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
               {hasNextEpisode && (
                 <button 
                   onClick={handleNextEpisode}
+                  aria-label="Next episode"
                   className="btn btn-link text-white p-0 border-0 d-flex align-items-center"
                   style={{ textDecoration: 'none', fontSize: '1.5rem' }}
                 >
-                  <i className="bi bi-chevron-right"></i>
+                  <i className="bi bi-chevron-right" aria-hidden="true"></i>
                 </button>
               )}
             </div>
@@ -236,7 +238,7 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
             <div>
               <div className="d-flex align-items-center gap-2">
                 <span className="me-1 mb-2">
-                  <i className="bi bi-star-fill fs-3 text-warning"></i>
+                  <i className="bi bi-star-fill fs-3 text-warning" aria-hidden="true"></i>
                 </span>
                 <span>
                   <span>{Math.round((episode?.vote_average + Number.EPSILON) * 100) / 100}</span>

@@ -76,6 +76,10 @@ const Home = () => {
   };
 
   useEffect(() => {
+    document.title = searchQuery ? `Search: ${searchQuery} | ReelHouse` : 'ReelHouse';
+  }, [searchQuery]);
+
+  useEffect(() => {
     // Each time the query in the URL changes, scroll to the top. This is important as the most relevant results will probably be at the top and the user can search for movies on any of the pages in the site.
     window.scrollTo(0, 0);
   }, [searchQuery]);
@@ -83,6 +87,7 @@ const Home = () => {
   return (
     <div className="bg-black vw-100 mw-100">
       <TopNavbar />
+      <main id="main-content" tabIndex={-1}>
       {!searchQuery ? (
         // If the user did not search for anything, then just show the default home page where we show the banner (with a random movie or tv show) OR show different movies and tv shows by the default categories in the form of a carousel for each category.
         <div>
@@ -112,6 +117,7 @@ const Home = () => {
           <MovieList movies={searchResults.data?.results || []} query={searchQuery} totalResults={searchResults.data} />
         )
       )}
+      </main>
     </div>
   );
 };

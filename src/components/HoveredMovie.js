@@ -54,7 +54,7 @@ const HoveredMovie = ({ setHoveredValue, movie }) => {
       <Card className="p-0 m-0 h-100 border-0 rounded">
         {videos && videos.results.length >= 1 ? (
           <div className="videoWrapper" style={{}}>
-            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videos.results[0].key}?&autoplay=1&loop=1&rel=0&controls=0&modestbranding=1&start=10`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} loop={true} autoPlay={true} muted={true} className="video-size"></iframe>
+            <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videos.results[0].key}?&autoplay=1&loop=1&rel=0&controls=0&modestbranding=1&start=10&mute=1`} title={`${movie?.title || movie?.name} trailer`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} loop={true} autoPlay={true} muted={true} className="video-size" tabIndex={-1}></iframe>
           </div>
         ) : (
           movie?.backdrop_path || movie?.poster_path ? (
@@ -73,18 +73,18 @@ const HoveredMovie = ({ setHoveredValue, movie }) => {
         <Card.Body className="bg-dark cardBody w-100">
           <Card.Title className="d-flex justify-content-between">
             <div className="d-flex">
-              <i className="bi bi-play-fill circleIcon me-2 bg-white text-dark border-dark"></i>
-              <i className="bi bi-plus circleIcon"></i>
+              <i className="bi bi-play-fill circleIcon me-2 bg-white text-dark border-dark" aria-hidden="true"></i>
+              <i className="bi bi-plus circleIcon" aria-hidden="true"></i>
             </div>
 
             <div>
-              <i className="bi bi-chevron-down circleIcon"></i>
+              <i className="bi bi-chevron-down circleIcon" aria-hidden="true"></i>
             </div>
           </Card.Title>
           <div className="">
               <div className="space-between-x-1">
                 <span className="me-1">
-                  <i className="bi bi-star-fill fs-6 text-warning"></i>
+                  <i className="bi bi-star-fill fs-6 text-warning" aria-hidden="true"></i>
                 </span>
                 <span>
                   <span>{Math.round((movie?.vote_average + Number.EPSILON) * 100) / 100}</span>

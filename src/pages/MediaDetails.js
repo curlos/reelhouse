@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { useParams, useLocation, useNavigate } from 'react-router-dom';
+import { useParams, useLocation, Link } from 'react-router-dom';
 import TopNavbar from '../components/TopNavbar';
 import { Spinner } from 'react-bootstrap';
 import { getGenreNames } from '../utils/genres_v2';
@@ -16,7 +16,6 @@ import { useGetMediaDetailsQuery, useGetMediaVideosQuery, useGetMediaCreditsQuer
 const MediaDetails = () => {
   const { id } = useParams();
   const location = useLocation();
-  const navigate = useNavigate();
   
   // Determine media type from route
   const isMovie = location.pathname.includes('/title/movie/');
@@ -34,6 +33,11 @@ const MediaDetails = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
+  useEffect(() => {
+    const name = details?.title || details?.name;
+    document.title = name ? `${name} | ReelHouse` : 'ReelHouse';
+  }, [details]);
+
   // TV-specific: Get the year range for TV shows
   const getYears = (details) => {
     const startYear = new Date(details.first_air_date).getFullYear();
@@ -50,12 +54,13 @@ const MediaDetails = () => {
     <div className="bg-black navbarMargin pb-3">
       <TopNavbar />
 
+      <main id="main-content" tabIndex={-1}>
       {loading ? <div className="spinnerContainer"><Spinner animation="border" className="text-brand" /></div> : (
         <div className="moviePageContainer container mx-auto px-3 px-sm-0">
           {/* Video or image display */}
           {videos?.results?.length >= 1 ?
             (<div className="videoWrapper" style={{}}>
-              <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videos?.results?.[0]?.key}?&autoplay=1&loop=1`} title="YouTube video player" frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} loop={true} autoPlay={true} muted={true} className="video-size"></iframe>
+              <iframe width="560" height="315" src={`https://www.youtube.com/embed/${videos?.results?.[0]?.key}?&autoplay=1&loop=1&mute=1`} title={`${details?.title || details?.name} trailer`} frameBorder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowFullScreen={true} loop={true} autoPlay={true} muted={true} className="video-size"></iframe>
             </div>) : (
               <div>
                 <img src={`https://image.tmdb.org/t/p/original${details?.backdrop_path || details?.poster_path}`} alt="" className="w-100" />
@@ -128,15 +133,9 @@ const MediaDetails = () => {
                     <span className="text-lightgray me-1 span">Director:</span>
                     {getAllDirectors(credits).map((director, index) => (
                       <span key={director.id}>
-                        <span 
-                          className="text-white cursor-pointer hover:text-gray-300"
-                          style={{ cursor: 'pointer', textDecoration: 'none' }}
-                          onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-                          onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-                          onClick={() => navigate(`/person/${director.id}`)}
-                        >
+                        <Link to={`/person/${director.id}`} className="text-white personLink">
                           {director.name}
-                        </span>
+                        </Link>
                         {index < getAllDirectors(credits).length - 1 && ', '}
                       </span>
                     ))}
@@ -157,15 +156,9 @@ const MediaDetails = () => {
                     <span className="text-lightgray">Cast:</span>{' '}
                     {getAllActors(credits).map((actor, index) => (
                       <span key={actor.id}>
-                        <span 
-                          className="text-white cursor-pointer hover:text-gray-300"
-                          style={{ cursor: 'pointer', textDecoration: 'none' }}
-                          onMouseEnter={(e) => e.target.style.textDecoration = 'underline'}
-                          onMouseLeave={(e) => e.target.style.textDecoration = 'none'}
-                          onClick={() => navigate(`/person/${actor.id}`)}
-                        >
+                        <Link to={`/person/${actor.id}`} className="text-white personLink">
                           {actor.name}
-                        </span>
+                        </Link>
                         {index < getAllActors(credits).length - 1 && ', '}
                       </span>
                     ))}
@@ -187,6 +180,7 @@ const MediaDetails = () => {
           <RecommendedMoviesList recommendedMovies={recommendedContent} />
         </div>
       )}
+      </main>
     </div>
   );
 };

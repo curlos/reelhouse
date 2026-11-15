@@ -15,11 +15,12 @@ const SideNavbar = ({ open, setOpen }) => {
   const user = useSelector(selectUser);
   const dispatch = useDispatch();
   const sidenavRef = useRef(null);
+  const closeButtonRef = useRef(null);
 
   const handleLogout = async () => {
     try {
       await signOut(auth);
-      dispatch(logout);
+      dispatch(logout());
       window.location.reload();
     } catch (err) {
       console.error(err);
@@ -33,27 +34,36 @@ const SideNavbar = ({ open, setOpen }) => {
       }
     };
 
+    const handleEscape = (event) => {
+      if (event.key === 'Escape') {
+        setOpen(false);
+      }
+    };
+
     if (open) {
       document.addEventListener('mousedown', handleClickOutside);
+      document.addEventListener('keydown', handleEscape);
+      closeButtonRef.current?.focus();
     }
 
     return () => {
       document.removeEventListener('mousedown', handleClickOutside);
+      document.removeEventListener('keydown', handleEscape);
     };
   }, [open, setOpen]);
 
   return (
     <>
       {open && <div className="sidenav-overlay" onClick={() => setOpen(false)} />}
-      <div ref={sidenavRef} id="mySidenav" className={`sidenav ${open ? 'sidenavOpen' : ''}`}>
-        <button className="closebtn" onClick={() => setOpen(false)}>&times;</button>
+      <nav ref={sidenavRef} id="mySidenav" aria-label="Mobile menu" className={`sidenav ${open ? 'sidenavOpen' : ''}`}>
+        <button ref={closeButtonRef} className="closebtn" aria-label="Close menu" onClick={() => setOpen(false)}>&times;</button>
         <Link to="/" onClick={() => setOpen(false)}>Home</Link>
         <Link to="/movies" onClick={() => setOpen(false)}>Movies</Link>
         <Link to="/tv-shows" onClick={() => setOpen(false)}>TV Shows</Link>
         {user && user.email ? (
           <span>
             <Link to="/profile" onClick={() => setOpen(false)}>My Account</Link>
-            <div className="sidenavLogout" onClick={handleLogout}>Sign Out</div>
+            <button type="button" className="sidenavLogout bg-transparent border-0" onClick={handleLogout}>Sign Out</button>
           </span>
         ) : (
           <span>
@@ -61,7 +71,7 @@ const SideNavbar = ({ open, setOpen }) => {
             <Link to="/signup" onClick={() => setOpen(false)}>Sign Up</Link>
           </span>
         )}
-      </div>
+      </nav>
     </>
   );
 };

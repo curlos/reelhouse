@@ -55,15 +55,16 @@ const FilterBadge = ({ label, value, paramKey, searchParams, setSearchParams }) 
       <button 
         className="bg-secondary rounded-circle border-0 d-flex align-items-center justify-content-center position-absolute"
         style={{ 
-          width: '22px', 
-          height: '22px', 
+          width: '24px', 
+          height: '24px', 
           fontSize: '20px', 
           top: '-10px', 
           right: '-10px' 
         }}
         onClick={handleClear}
+        aria-label={`Clear ${label} filter`}
       >
-        <i className="bi bi-x text-white"></i>
+        <i className="bi bi-x text-white" aria-hidden="true"></i>
       </button>
     </div>
   );
@@ -121,6 +122,10 @@ const BrowsePage = () => {
   const totalResults = contentData?.total_results || 0;
   
   const SORT_TYPES = title === "Movies" ? SORT_TYPES_MOVIE : SORT_TYPES_TV;
+
+  useEffect(() => {
+    document.title = `${title} | ReelHouse`;
+  }, [title]);
 
   useEffect(() => {
     // Only scroll to top if there are no filters (clean page load)
@@ -195,6 +200,7 @@ const BrowsePage = () => {
   return (
     <div className="bg-black pb-3">
       <TopNavbar />
+      <main id="main-content" tabIndex={-1}>
       <Banner data={bannerQuery.data} isLoading={bannerQuery.isLoading} />
 
       <div className="pt-5 text-white container mx-auto px-3 px-sm-0">
@@ -247,7 +253,7 @@ const BrowsePage = () => {
 
         <div className="py-2 d-flex gap-2 dropdownsContainer">
           <Dropdown>
-            <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0 bg-secondary" id="dropdown-basic" className="p-0">
+            <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0 bg-secondary" id="genre-dropdown" className="p-0">
               <div className="">Genre</div>
             </Dropdown.Toggle>
 
@@ -277,10 +283,10 @@ const BrowsePage = () => {
                   };
 
                   return (
-                    <div key={genre} className="cursor-pointer" onClick={handleGenreChange}>
+                    <label key={genre} className="d-block cursor-pointer">
                       <input type="checkbox" className="me-1" checked={genres[genre]} onChange={handleGenreChange} />
                       <span>{genre}</span>
-                    </div>
+                    </label>
                   );
                 })}
               </div>
@@ -288,7 +294,7 @@ const BrowsePage = () => {
           </Dropdown>
 
           <Dropdown>
-            <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0 bg-secondary" id="dropdown-basic" className="p-0">
+            <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0 bg-secondary" id="year-dropdown" className="p-0">
               <div className="">Year</div>
             </Dropdown.Toggle>
 
@@ -307,10 +313,10 @@ const BrowsePage = () => {
                   };
 
                   return (
-                    <div key={year} className="cursor-pointer" onClick={handleYearChange}>
+                    <label key={year} className="d-block cursor-pointer">
                       <input type="radio" name="year-option" className="me-1" checked={selectedYear === year.toString()} onChange={handleYearChange} />
                       <span>{year}</span>
-                    </div>
+                    </label>
                   );
                 })}
               </div>
@@ -318,7 +324,7 @@ const BrowsePage = () => {
           </Dropdown>
 
           <Dropdown>
-            <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0" id="dropdown-basic" className="p-0">
+            <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0" id="sort-dropdown" className="p-0">
               <div className="">Sort</div>
             </Dropdown.Toggle>
 
@@ -337,10 +343,10 @@ const BrowsePage = () => {
                   };
 
                   return (
-                    <div key={sortType} className="cursor-pointer" onClick={handleSortChange}>
+                    <label key={sortType} className="d-block cursor-pointer">
                       <input type="radio" name="sort-option" className="me-1" checked={SORT_TYPES[sortType] === selectedSortType} onChange={handleSortChange} />
                       <span>{sortType}</span>
-                    </div>
+                    </label>
                   );
                 })}
               </div>
@@ -381,6 +387,7 @@ const BrowsePage = () => {
         }}
         className={paginationClassName}
       />
+      </main>
     </div>
   );
 };

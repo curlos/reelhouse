@@ -47,6 +47,12 @@ const TVEpisode = () => {
     window.scrollTo(0, 0);
   }, [id]);
 
+  useEffect(() => {
+    if (tvShow?.name) {
+      document.title = `${tvShow.name} S${seasonNum}E${episodeNum} | ReelHouse`;
+    }
+  }, [tvShow, seasonNum, episodeNum]);
+
   // Smart episode redirect: if the requested episode doesn't exist, redirect to the first episode of the season
   useEffect(() => {
     if (currentSeason && !seasonLoading && currentSeason.episodes) {
@@ -70,6 +76,7 @@ const TVEpisode = () => {
     loading ? <div className="spinnerContainer"><Spinner animation="border" className="text-brand" /></div> : (
       <div>
         <TopNavbar />
+        <main id="main-content" tabIndex={-1}>
         <TVEpisodeBanner 
           tvShow={tvShow} 
           episode={episode} 
@@ -78,6 +85,7 @@ const TVEpisode = () => {
           currentSeasonNum={parseInt(seasonNum)}
           currentEpisodeNum={parseInt(episodeNum)}
         />
+        </main>
       </div>
     )
   );

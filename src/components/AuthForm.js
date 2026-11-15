@@ -40,6 +40,10 @@ const AuthForm = ({ mode }) => {
     window.scrollTo(0, 0);
   }, []);
 
+  useEffect(() => {
+    document.title = `${title} | ReelHouse`;
+  }, [title]);
+
   return (
     <div className="authPage d-flex justify-content-center align-items-center">
       <div className="d-flex justify-content-between fixed-top p-4 container mx-auto px-3 px-sm-0">
@@ -48,19 +52,19 @@ const AuthForm = ({ mode }) => {
         </Link>
       </div>
 
-      <div className="container mx-auto px-3 px-sm-0 d-flex justify-content-center">
+      <main className="container mx-auto px-3 px-sm-0 d-flex justify-content-center">
         <form className={`authForm ${isLogin ? 'w-100' : ''}`} onSubmit={handleSubmit}>
-          <div className="fs-2 fw-bold">{title}</div>
+          <h1 className="fs-2 fw-bold">{title}</h1>
 
           {isLogin ? (
             <>
-              <input ref={emailRef} type="text" className="w-100 my-3 authInput" placeholder="Email" />
-              <input ref={passwordRef} type="password" className="w-100 authInput" placeholder="Password" />
+              <input ref={emailRef} type="email" className="w-100 my-3 authInput" placeholder="Email" aria-label="Email" autoComplete="email" required />
+              <input ref={passwordRef} type="password" className="w-100 authInput" placeholder="Password" aria-label="Password" autoComplete="current-password" required />
             </>
           ) : (
             <div className="my-3">
-              <input ref={emailRef} type="text" className="w-100 mb-3 authInput" placeholder="Email" />
-              <input ref={passwordRef} type="password" className="w-100 authInput" placeholder="Password" />
+              <input ref={emailRef} type="email" className="w-100 mb-3 authInput" placeholder="Email" aria-label="Email" autoComplete="email" required />
+              <input ref={passwordRef} type="password" className="w-100 authInput" placeholder="Password" aria-label="Password" autoComplete="new-password" required />
             </div>
           )}
 
@@ -71,7 +75,7 @@ const AuthForm = ({ mode }) => {
             <Link to={linkPath} className="authLink">{linkText}</Link>
           </div>
         </form>
-      </div>
+      </main>
     </div>
   );
 };

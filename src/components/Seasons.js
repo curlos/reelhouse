@@ -1,7 +1,6 @@
 import React, { useEffect, useRef } from 'react';
 import { Dropdown, Spinner } from 'react-bootstrap';
-import { useNavigate } from 'react-router';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { useGetTVShowSeasonsQuery } from '../services/tvApi';
 import CustomPagination from './CustomPagination';
 
@@ -53,7 +52,7 @@ const Seasons = ({ tvShowID, tvShowDetails }) => {
 
         <div>
           <Dropdown className="fs-6">
-            <Dropdown.Toggle ref={seasonDropdownRef} variant="transparent text-white d-flex align-items-center gap-1 border-0 fs-3 fw-bold" id="dropdown-basic" className="p-0 ">
+            <Dropdown.Toggle ref={seasonDropdownRef} variant="transparent text-white d-flex align-items-center gap-1 border-0 fs-3 fw-bold" id="season-dropdown" className="p-0 ">
               Season {selectedSeason}{season?.name && !/^season\s+\d+$/i.test(season.name.trim()) ? ` (${season.name})` : ''}
             </Dropdown.Toggle>
 
@@ -86,7 +85,6 @@ const Seasons = ({ tvShowID, tvShowDetails }) => {
 
 // Season component that displays season data (data fetched by parent)
 const Season = ({ tvShowID, seasonNumber, seasonData, isLoading, error, seasonDropdownRef }) => {
-  const navigate = useNavigate();
   const [searchParams, setSearchParams] = useSearchParams();
   const currentPage = parseInt(searchParams.get('page')) || 1;
   const isInitialRender = useRef(true);
@@ -167,7 +165,7 @@ const Season = ({ tvShowID, seasonNumber, seasonData, isLoading, error, seasonDr
       <div>
         {currentEpisodes.map((episode) => {
           return (
-            <div key={episode.id || episode.episode_number} className="py-2 p-md-3 d-flex justify-content-between align-items-center gap-4 border-bottom border-secondary tvSmallEpisode" onClick={() => navigate(`/title/tv/${tvShowID}/season/${seasonNumber}/episode/${episode.episode_number}`)}>
+            <Link key={episode.id || episode.episode_number} to={`/title/tv/${tvShowID}/season/${seasonNumber}/episode/${episode.episode_number}`} className="py-2 p-md-3 d-flex justify-content-between align-items-center gap-4 border-bottom border-secondary tvSmallEpisode text-decoration-none">
               <div className="d-flex align-items-center gap-4">
                 <h3>{episode.episode_number}</h3>
                 <img src={`https://image.tmdb.org/t/p/original${episode?.still_path}`} alt={''} className="moviePoster" />
@@ -181,7 +179,7 @@ const Season = ({ tvShowID, seasonNumber, seasonData, isLoading, error, seasonDr
               {episode?.vote_count > 0 ? (
                 <div className="d-none d-lg-flex align-items-start gap-2">
                   <div className="mt-2">
-                    <i className="bi bi-star-fill fs-5 text-warning"></i>
+                    <i className="bi bi-star-fill fs-5 text-warning" aria-hidden="true"></i>
                   </div>
                   <div className="">
                     <div className="text-center">
@@ -193,7 +191,7 @@ const Season = ({ tvShowID, seasonNumber, seasonData, isLoading, error, seasonDr
                   </div>
                 </div>
               ) : null}
-            </div>
+            </Link>
           );
         })}
       </div>

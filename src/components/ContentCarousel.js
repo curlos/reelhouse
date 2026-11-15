@@ -50,7 +50,7 @@ const ContentCarousel = ({ name, movies, isLoading, hoveredValue, setHoveredValu
   return (
     !isLoading && (
       <div className="bg-black my-4 container mx-auto px-3 px-sm-0">
-        <div className="fs-4">{name} {!['Netflix Originals', 'Documentaries', 'Trending'].includes(name) && 'Movies'}</div>
+        <h2 className="fs-4 fw-normal">{name} {!['Netflix Originals', 'Documentaries', 'Trending'].includes(name) && 'Movies'}</h2>
         <Row>
           <Carousel activeIndex={index} onSelect={handleSelect} interval={null}>
 

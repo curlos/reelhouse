@@ -36,6 +36,10 @@ const Person = () => {
   useEffect(() => {
     window.scrollTo(0, 0);
   }, [personId]);
+
+  useEffect(() => {
+    document.title = personDetails?.name ? `${personDetails.name} | ReelHouse` : 'ReelHouse';
+  }, [personDetails]);
   
   // Reset to page 1 when person changes
   useEffect(() => {
@@ -77,10 +81,10 @@ const Person = () => {
     return (
       <div className="bg-black navbarMargin pb-3">
         <TopNavbar />
-        <div className="container mx-auto px-3 px-sm-0 py-5 text-center">
-          <div className="fs-2 text-white mb-2">Person not found</div>
-          <div className="text-muted">The person you're looking for doesn't exist or has been removed.</div>
-        </div>
+        <main id="main-content" tabIndex={-1} className="container mx-auto px-3 px-sm-0 py-5 text-center">
+          <h1 className="fs-2 text-white mb-2">Person not found</h1>
+          <div className="text-lightgray">The person you're looking for doesn't exist or has been removed.</div>
+        </main>
       </div>
     );
   }
@@ -89,6 +93,7 @@ const Person = () => {
     <div className="bg-black navbarMargin pb-3">
       <TopNavbar />
 
+      <main id="main-content" tabIndex={-1}>
       {loading ? (
         <div className="spinnerContainer">
           <Spinner animation="border" className="text-brand" />
@@ -289,6 +294,7 @@ const Person = () => {
           )}
         </div>
       )}
+      </main>
     </div>
   );
 };

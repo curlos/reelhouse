@@ -25,6 +25,12 @@ const Banner = ({ data, isLoading }) => {
     if (!isLoading && movieOrTvShow && movieOrTvShow.overview) {
       const overview = movieOrTvShow.overview.length > 280 ? movieOrTvShow.overview.slice(0, 280) + '...' : movieOrTvShow.overview;
 
+      // Skip the typing animation for users who prefer reduced motion
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        overviewRef.current.textContent = overview;
+        return;
+      }
+
       const options = {
         strings: [overview],
         typeSpeed: 20,
@@ -61,15 +67,16 @@ const Banner = ({ data, isLoading }) => {
           className="vw-100 vh-100 mw-100 d-flex align-items-center"
         >
           <div className="w-100 container mx-auto px-3 px-sm-0">
-            <div className="fs-1 fw-bold mb-2">{movieOrTvShow?.title || movieOrTvShow?.name}</div>
-            <div className="fs-5 fw-light mb-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }} ref={overviewRef}></div>
+            <h1 className="fs-1 fw-bold mb-2">{movieOrTvShow?.title || movieOrTvShow?.name}</h1>
+            <p className="visually-hidden">{movieOrTvShow?.overview}</p>
+            <div className="fs-5 fw-light mb-2" style={{ textShadow: '2px 2px 4px rgba(0,0,0,0.7)' }} ref={overviewRef} aria-hidden="true"></div>
             <div className="d-flex">
               <button className="btn btn-light me-2 fw-bold d-flex align-items-center" onClick={handleNavigation}>
-                <div className="bi-play-fill me-2 fs-4" />
+                <div className="bi-play-fill me-2 fs-4" aria-hidden="true" />
                 <div className="fs-6">Play</div>
               </button>
               <button type="button" className="btn btn-secondary fw-bold d-flex align-items-center" onClick={handleNavigation}>
-                <div className="bi-info-circle me-2 fs-4" />
+                <div className="bi-info-circle me-2 fs-4" aria-hidden="true" />
                 <div className="fs-6">More Info</div>
               </button>
             </div>

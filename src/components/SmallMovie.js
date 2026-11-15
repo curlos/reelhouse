@@ -1,5 +1,5 @@
 import React, { useState, useRef, useEffect } from 'react';
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import HoveredMovie from './HoveredMovie';
 
 /**
@@ -8,7 +8,6 @@ import HoveredMovie from './HoveredMovie';
  */
 const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
   const [_show, setShow] = useState(false);
-  const navigate = useNavigate();
 
   const timeoutIdRef = useRef(null);
 
@@ -47,23 +46,21 @@ const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
   };
 
 
-  const handleNavigation = () => {
+  const getPath = () => {
     if (movie?.media_type === 'person') {
-      navigate(`/person/${movie.id}`);
-      return;
+      return `/person/${movie.id}`;
     }
-    
+
     if (movie.first_air_date || movie.media_type === 'tv') {
-      navigate(`/title/tv/${movie.id}`);
-    } else {
-      navigate(`/title/movie/${movie.id}`);
+      return `/title/tv/${movie.id}`;
     }
+    return `/title/movie/${movie.id}`;
   };
 
   const imagePath = movie?.media_type === 'person' ? movie?.profile_path : movie?.poster_path;
 
   return (
-    <div className="flex-1" onClick={handleNavigation}>
+    <Link to={getPath()} className="flex-1 d-block text-decoration-none">
       {hoveredValue && hoveredValue === movie && movie?.media_type !== 'person' ? (
 
         <div className="text-white">
@@ -75,19 +72,19 @@ const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
           <div className="d-flex flex-column justify-content-between h-100">
             <div >
               {imagePath ? (
-                <img src={`https://image.tmdb.org/t/p/original${imagePath}`} alt="" className={`movieImage rounded`} />
+                <img src={`https://image.tmdb.org/t/p/original${imagePath}`} alt={movie?.title || movie?.name || ''} className={`movieImage rounded`} />
               ) : (
                 <div className="movieImage rounded d-flex align-items-center justify-content-center text-center p-3" style={{backgroundColor: '#333', aspectRatio: '2/3'}}>
                   <div>
                     <div className="fw-bold mb-2">{movie?.title || movie?.name}</div>
-                    <div className="text-muted small">No Image Available</div>
+                    <div className="text-lightgray small">No Image Available</div>
                   </div>
                 </div>
               )}
             </div>
             {roleInfo && (
               <div className="px-2 py-1">
-                <div className="text-muted small text-center" style={{ fontSize: '0.75rem', lineHeight: '1.2' }}>
+                <div className="text-lightgray small text-center" style={{ fontSize: '0.75rem', lineHeight: '1.2' }}>
                   {roleInfo}
                 </div>
               </div>
@@ -95,7 +92,7 @@ const SmallMovie = ({ movie, hoveredValue, setHoveredValue, roleInfo }) => {
           </div>
         </div>
       )}
-    </div>
+    </Link>
   );
 };
 
