@@ -16,7 +16,7 @@ const AuthForm = ({ mode }) => {
   const buttonText = isLogin ? 'Sign In' : 'Sign Up';
   const linkText = isLogin ? 'Sign Up now.' : 'Login now.';
   const linkPath = isLogin ? '/signup' : '/login';
-  const promptText = isLogin ? 'New to Netflix?' : 'Have an account?';
+  const promptText = isLogin ? 'New to ReelHouse?' : 'Have an account?';
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -44,7 +44,7 @@ const AuthForm = ({ mode }) => {
     <div className="authPage d-flex justify-content-center align-items-center">
       <div className="d-flex justify-content-between fixed-top p-4 container mx-auto px-3 px-sm-0">
         <Link to="/">
-          <img src="/assets/netflix_logo.png" alt="" className="authLogo" />
+          <img src="/assets/reelhouse_logo.svg" alt="ReelHouse" className="authLogo" />
         </Link>
       </div>
 
@@ -64,7 +64,7 @@ const AuthForm = ({ mode }) => {
             </div>
           )}
 
-          <button type="submit" className="w-100 my-4 netflixRedButton">{buttonText}</button>
+          <button type="submit" className="w-100 my-4 brandButton">{buttonText}</button>
 
           <div>
             <span className="text-lightgray">{promptText}</span>

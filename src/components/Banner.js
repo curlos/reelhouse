@@ -50,7 +50,7 @@ const Banner = ({ data, isLoading }) => {
   };
 
   return (
-    isLoading ? <div className="spinnerContainer"><Spinner animation="border" variant="danger" /></div> : (
+    isLoading ? <div className="spinnerContainer"><Spinner animation="border" className="text-brand" /></div> : (
       <div className="bannerContainer">
         <div
           style={{

@@ -50,7 +50,7 @@ const MediaDetails = () => {
     <div className="bg-black navbarMargin pb-3">
       <TopNavbar />
 
-      {loading ? <div className="spinnerContainer"><Spinner animation="border" variant="danger" /></div> : (
+      {loading ? <div className="spinnerContainer"><Spinner animation="border" className="text-brand" /></div> : (
         <div className="moviePageContainer container mx-auto px-3 px-sm-0">
           {/* Video or image display */}
           {videos?.results?.length >= 1 ?

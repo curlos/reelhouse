@@ -99,12 +99,12 @@ const TopNavbar = () => {
     <Navbar variant="dark" className="bg-black fixed-top topNavbar">
       <Nav className="w-100 text-white navLink d-flex justify-content-between align-items-center container mx-auto px-3 px-sm-0">
         <Link to="/" className="navLink h-100 ps-0 d-flex align-items-center me-2 d-md-none">
-          <img src="/assets/netflix_logo.png" alt="" className="navImage" />
+          <img src="/assets/reelhouse_logo.svg" alt="ReelHouse" className="navImage" />
         </Link>
 
         <div className="d-none d-md-flex">
           <Link to="/" className="navLink h-100 ps-0 d-flex align-items-center me-2">
-            <img src="/assets/netflix_logo.png" alt="" className="navImage" />
+            <img src="/assets/reelhouse_logo.svg" alt="ReelHouse" className="navImage" />
           </Link>
           <Link to="/" className="navLink nav-link">Home</Link>
           <Link to="/tv-shows" className="navLink nav-link">TV Shows</Link>
@@ -125,7 +125,7 @@ const TopNavbar = () => {
           {user && user.email ? (
             <Dropdown className="d-none d-sm-block">
               <Dropdown.Toggle variant="transparent text-white d-flex align-items-center gap-1 border-0" id="dropdown-basic" className="p-0 ">
-                <img src="/assets/netflix_avatar.png" alt="" className="navImage" />
+                <img src="/assets/reelhouse_avatar.svg" alt="Profile" className="navImage" />
               </Dropdown.Toggle>
 
               <Dropdown.Menu variant="dark" align="end">

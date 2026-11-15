@@ -24,9 +24,9 @@ const Plans = () => {
 
   // Plan name mapping based on subscription amounts
   const PLAN_NAMES = {
-    1799: 'Netflix Premium', // $17.99
-    1399: 'Netflix Basic',   // $13.99
-    899: 'Netflix Standard'  // $8.99
+    1799: 'ReelHouse Premium', // $17.99
+    1399: 'ReelHouse Basic',   // $13.99
+    899: 'ReelHouse Standard'  // $8.99
   };
 
   // Handle URL parameters (success/cancel from Stripe)
@@ -261,7 +261,7 @@ const Plans = () => {
   };
 
   return (
-    loading ? <div className=""><Spinner animation="border" variant="danger" /></div> : (
+    loading ? <div className=""><Spinner animation="border" className="text-brand" /></div> : (
       <div className="space-between-y-2">
         {!subscription ?
           <div className="fw-bold">
@@ -300,7 +300,7 @@ const Plans = () => {
                   <div>{productData.description}</div>
                 </div>
 
-                <button className={`${isCurrentPackage ? 'netflixGrayButton' : 'netflixRedButton'}`} onClick={() => {
+                <button className={`${isCurrentPackage ? 'brandGrayButton' : 'brandButton'}`} onClick={() => {
                   if (!isCurrentPackage) {
                     loadCheckout(productData.prices.priceId);
                   }

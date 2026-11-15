@@ -49,7 +49,7 @@ const Profile = () => {
           <h1 className="mb-4">Edit Profile</h1>
           <div className="d-lg-flex gap-4">
             <div className="mb-4 mb-lg-0">
-              <img src="/assets/netflix_avatar.png" alt="" className="profileProfileUserAvatar" />
+              <img src="/assets/reelhouse_avatar.svg" alt="" className="profileProfileUserAvatar" />
             </div>
 
             <div className="w-100">

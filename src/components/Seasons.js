@@ -146,7 +146,7 @@ const Season = ({ tvShowID, seasonNumber, seasonData, isLoading, error, seasonDr
   }, [currentPage, seasonDropdownRef, searchParams]);
 
   if (isLoading) {
-    return <div className="text-center py-4"><Spinner animation="border" variant="danger" /></div>;
+    return <div className="text-center py-4"><Spinner animation="border" className="text-brand" /></div>;
   }
 
   if (error || !seasonData) {

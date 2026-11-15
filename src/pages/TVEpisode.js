@@ -67,7 +67,7 @@ const TVEpisode = () => {
 
 
   return (
-    loading ? <div className="spinnerContainer"><Spinner animation="border" variant="danger" /></div> : (
+    loading ? <div className="spinnerContainer"><Spinner animation="border" className="text-brand" /></div> : (
       <div>
         <TopNavbar />
         <TVEpisodeBanner 

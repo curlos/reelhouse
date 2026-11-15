@@ -148,7 +148,7 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
                       style={{ 
                         fontSize: '1.1rem', 
                         padding: '8px 16px',
-                        backgroundColor: seasonNum === currentSeasonNum ? '#E50914' : 'transparent'
+                        backgroundColor: seasonNum === currentSeasonNum ? 'var(--brand)' : 'transparent'
                       }}
                     >
                       <div className="text-white">
@@ -189,7 +189,7 @@ const TVEpisodeBanner = ({ tvShow, episode, currentSeason, tvShowId, currentSeas
                       style={{ 
                         padding: '12px 16px', 
                         fontSize: '1rem',
-                        backgroundColor: ep.episode_number === currentEpisodeNum ? '#E50914' : 'transparent'
+                        backgroundColor: ep.episode_number === currentEpisodeNum ? 'var(--brand)' : 'transparent'
                       }}
                     >
                       <div>

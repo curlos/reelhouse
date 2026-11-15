@@ -91,7 +91,7 @@ const Person = () => {
 
       {loading ? (
         <div className="spinnerContainer">
-          <Spinner animation="border" variant="danger" />
+          <Spinner animation="border" className="text-brand" />
         </div>
       ) : (
         <div className="container mx-auto px-3 px-sm-0 py-4">
@@ -164,7 +164,7 @@ const Person = () => {
                   {displayPerson.biography.length > 300 && (
                     <div className="text-center text-md-start">
                       <button 
-                        className="btn btn-link text-primary p-0 text-decoration-none fw-bold"
+                        className="btn btn-link text-brand p-0 text-decoration-none fw-bold"
                         onClick={() => setShowFullBio(!showFullBio)}
                         style={{ fontSize: '0.9rem' }}
                       >
@@ -194,8 +194,8 @@ const Person = () => {
                       setSearchParams(newSearchParams);
                     }}
                     style={{ 
-                      backgroundColor: activeTab === 'cast' ? '#E50914' : 'transparent',
-                      borderColor: activeTab === 'cast' ? '#E50914' : '#6c757d',
+                      backgroundColor: activeTab === 'cast' ? 'var(--brand)' : 'transparent',
+                      borderColor: activeTab === 'cast' ? 'var(--brand)' : '#6c757d',
                       color: activeTab === 'cast' ? 'white' : '#6c757d'
                     }}
                   >
@@ -211,8 +211,8 @@ const Person = () => {
                       setSearchParams(newSearchParams);
                     }}
                     style={{ 
-                      backgroundColor: activeTab === 'crew' ? '#E50914' : 'transparent',
-                      borderColor: activeTab === 'crew' ? '#E50914' : '#6c757d',
+                      backgroundColor: activeTab === 'crew' ? 'var(--brand)' : 'transparent',
+                      borderColor: activeTab === 'crew' ? 'var(--brand)' : '#6c757d',
                       color: activeTab === 'crew' ? 'white' : '#6c757d'
                     }}
                   >

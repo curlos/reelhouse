@@ -1,3 +1,8 @@
+:root {
+  --brand: #8B5CF6;
+  --brand-hover: #7442E8;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -249,8 +254,8 @@ a {
   height: 40px;
 }
 
-.netflixRedButton {
-  background-color: #E50A14;
+.brandButton {
+  background-color: var(--brand);
   border: none;
   border-radius: 7px;
   padding: 10px;
@@ -261,12 +266,12 @@ a {
   font-weight: 600;
 }
 
-.netflixRedButton:hover {
+.brandButton:hover {
   cursor: pointer;
-  background-color: #bd0811;
+  background-color: var(--brand-hover);
 }
 
-.netflixGrayButton {
+.brandGrayButton {
   background-color: gray;
   border: none;
   border-radius: 7px;
@@ -278,7 +283,7 @@ a {
   font-weight: 600;
 }
 
-.netflixGrayButton:hover {
+.brandGrayButton:hover {
   cursor: pointer;
   background-color: gray;
 }
@@ -309,7 +314,7 @@ a {
   text-decoration: underline;
 }
 
-.profileNetflixLogo {
+.profileBrandLogo {
   height: 35px;
 }
 
@@ -396,7 +401,7 @@ a {
 }
 
 .profileSaveButton:hover {
-  background-color: #E50A14;
+  background-color: var(--brand);
   color: white;
 }
 
@@ -454,6 +459,16 @@ a {
 .page-item .active {
   border: 1px solid rgb(125, 125, 125);
   box-shadow: none;
+}
+
+.page-item.active .page-link {
+  background-color: var(--brand) !important;
+  border-color: var(--brand);
+  color: white;
+}
+
+.text-brand {
+  color: var(--brand) !important;
 }
 
 
@@ -644,8 +659,8 @@ a:hover {
     border-radius: 7px;
   }
 
-  .netflixRedButton,
-  .netflixGrayButton {
+  .brandButton,
+  .brandGrayButton {
     padding: 10px;
   }
 

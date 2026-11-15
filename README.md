@@ -1,11 +1,11 @@
-# Netflix 2.0
+# ReelHouse
 
 <p align="center">
-  <img src="/public/netflix_icon.png" alt="Netflix 2.0 Logo" width="80" height="80">
+  <img src="/public/reelhouse_icon.svg" alt="ReelHouse Logo" width="80" height="80">
 </p>
 
 <p align="center">
-  <strong>🎬 A modern Netflix clone with enhanced features and extensive content library</strong>
+  <strong>🎬 A Netflix-inspired movie & TV discovery app powered by TMDB</strong>
 </p>
 
 <p align="center">
@@ -20,7 +20,7 @@
 
 ## 🌟 About The Project
 
-Netflix 2.0 is a responsive streaming platform that enhances the original Netflix experience with a vast collection of movies and TV shows powered by the TMDB API. The platform includes content that even Netflix doesn't have, with advanced filtering, sorting, and subscription management features.
+ReelHouse is a responsive movie and TV discovery app with a vast collection of movies and TV shows powered by the TMDB API, with advanced filtering, sorting, and subscription management features.
 
 ## 📱 Screenshots
 
